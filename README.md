@@ -21,12 +21,17 @@ input: {payload: {path: 'foo/bar'}}
 output: <whatever data was at the path 'foo/bar' in the rtdb database>
 
 ## rtdb-set
-Set data at a path in the rtdb database. Use 'on' snapshot so will fire everytime the data at the path changes and so drive flow executin from that point.
+Set data at a path in the rtdb database. Use 'on' snapshot so will fire every time the data at the path changes and so drive flow execution from that point.
+
+input: {payload: {path: 'foo/bar'}, {some: 'object', foo: 17}}
+
+## rtdb-push
+Pushes the new object onto an array under the path
 
 input: {payload: {path: 'foo/bar'}, {some: 'object', foo: 17}}
 
 ## rtdb-query
-Set up a reactive wuery for a path in the rtdb database. 
+Set up a reactive query for a path in the rtdb database. 
 
 input: {payload: {path: 'foo/bar', queries:[], on: 'value}}
 
@@ -46,7 +51,45 @@ output: [an array of results for the query]
 
 # Firestore nodes
 
-TBD
+## firestore-get
+Get data from a document path in the firestore database
+
+input: {payload: {path: 'foo/bar'}}
+
+output: <the document at the path 'foo/bar' in the firestore database>
+
+## firestore-set
+Set data at a path in the firestore database. Uses 'onSnapshot' so will fire every time the data at the path changes and so drive flow execution from that point.
+
+input: {payload: {path: 'foo/bar'}, {some: 'object', foo: 17}}
+
+## firestore-add
+Adds the new object under the collection the path describes and assigns it a random id
+
+input: {payload: {path: 'foo/bar'}, {some: 'object', foo: 17}}
+
+## firestore-query
+Set up a reactive query for a collection in the firestore database.
+
+input: 
+
+    {
+        payload: {
+            path: 'foo/bar', 
+            queries:[], 
+            limit: 7, 
+            startAt: 4000,  // follows the orderBy property
+            endAt: 4050, // follows the orderBy property
+            orderBy: 'shoeSize',
+            orderDirection: 'asc', //default is 'desc'
+            queries:[
+                {"company", "==", "ACME"},
+                {"createdAt", ">", 1560099394242}
+            ]
+        }
+
+output: An array of the results of the query.
+
 
 # Storage nodes
 

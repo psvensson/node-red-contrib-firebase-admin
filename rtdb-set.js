@@ -5,8 +5,6 @@ module.exports = function(RED) {
     RED.nodes.createNode(this, config);
     var node = this;
 
-    console.log('config is..')
-    console.dir(config)
     if(config.cred){
       let c = RED.nodes.getNode(config.cred)
       this.admin = c.admin

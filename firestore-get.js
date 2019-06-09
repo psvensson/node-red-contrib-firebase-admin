@@ -1,5 +1,7 @@
 
 
+let unsub
+
 module.exports = function(RED) {
   function FirebaseAdmin(config) {
     RED.nodes.createNode(this, config);
@@ -10,21 +12,26 @@ module.exports = function(RED) {
       this.admin = c.admin
     }
 
+    const cb = (res)=>{
+      console.log('firestore get result '+res)
+      console.dir(res)
+      let val = res.data()
+      console.log('val='+val)
+      node.send({payload:val})
+    }
+
     node.on('input', function(msg) {
       if(msg && msg.payload){
-        console.log('rtdb-push got input')
-        console.dir(msg)
         const path = msg.payload.path
-        const obj = msg.payload.obj
-        console.log('storing '+obj+' at rtdb path '+path)
-        this.admin.database().ref(path).push(obj).then((res)=>{
-          console.log('firebase set result '+res)
-          console.dir(res)
-        })
+        if(unsub){
+          unsub()
+        }
+        this.admin.firestore().doc(path).onSnapshot(cb)
+
       }
     }.bind(this));
 
 
   }
-  RED.nodes.registerType("rtdb-push", FirebaseAdmin);
+  RED.nodes.registerType("firestore-get", FirebaseAdmin);
 }

@@ -23,6 +23,10 @@
       "rtdb-push": "rtdb-push.js",
       "rtdb-get": "rtdb-get.js",
       "rtdb-query": "rtdb-query.js",
+      "firestore-set": "firestore-set.js",
+      "firestore-add": "firestore-add.js",
+      "firestore-get": "firestore-get.js",
+      "firestore-query": "firestore-query.js",
       "firebase-config": "firebase-config.js"
     }
   },

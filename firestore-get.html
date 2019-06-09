@@ -1,5 +1,5 @@
 <script type="text/javascript">
-  RED.nodes.registerType('rtdb-query',{
+  RED.nodes.registerType('firestore-get',{
 
     category: 'firebase-admin',
     color: '#a6bbcf',
@@ -11,7 +11,7 @@
     outputs:1,
     icon: "firebase-admin-icon.png",
     label: function() {
-      return this.name||"rtdb-query";
+      return this.name||"firestore-get";
     },
 
     oneditsave: function() {
@@ -32,7 +32,7 @@
 
 </script>
 
-<script type="text/x-red" data-template-name="rtdb-query">
+<script type="text/x-red" data-template-name="firestore-get">
     <div class="form-row">
         <label for="node-input-name"><i class="icon-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
@@ -45,6 +45,6 @@
 
 </script>
 
-<script type="text/x-red" data-help-name="rtdb-query">
-    <p>A node that wraps the rtdb-query SDK</p>
+<script type="text/x-red" data-help-name="firestore-get">
+    <p>A node that wraps the firestore-get SDK</p>
 </script>
