@@ -12,6 +12,7 @@
   },
   "author": "",
   "license": "MIT",
+  "keywords": [ "node-red" ],
   "bugs": {
     "url": "https://github.com/psvensson/node-red-contrib-firebase-admin/issues"
   },
