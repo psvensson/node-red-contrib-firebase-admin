@@ -18,8 +18,9 @@ module.exports = function(RED) {
         const obj = msg.payload.obj
         console.log('storing '+obj+' at rtdb path '+path)
         this.admin.firestore().collection(path).add(obj).then((res)=>{
-          console.log('firestore set result '+res)
+          console.log('firestore set result '+res.id)
           console.dir(res)
+          node.send({payload:res.id})
         })
       }
     }.bind(this));

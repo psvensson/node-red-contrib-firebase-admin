@@ -20,6 +20,7 @@ module.exports = function(RED) {
         this.admin.database().ref(path).push(obj).then((res)=>{
           console.log('firebase set result '+res)
           console.dir(res)
+          node.send({payload: res})
         })
       }
     }.bind(this));
