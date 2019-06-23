@@ -20,6 +20,9 @@ module.exports = function(RED) {
         this.admin.database().ref(path).set(obj).then((res)=>{
           console.log('firebase set result '+res)
           console.dir(res)
+        }).catch((err)=>{
+          console.log('------ ERROR ------')
+          console.dir(err)
         })
       }
     }.bind(this));
