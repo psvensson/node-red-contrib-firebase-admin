@@ -19,6 +19,7 @@ module.exports = function(RED) {
         console.log('flow-to-rtdb path='+this.path+', flowId='+this.flowId)
 
         runtime.flows.getFlow({id: this.flowId}).then((flow)=>{
+          flow.updated_at = Date.now()
           this.admin.database().ref(this.path).set(flow).then((res)=>{
             console.log('firebase set result '+res)
             console.dir(res)

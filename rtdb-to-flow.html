@@ -7,6 +7,7 @@
       name: {value:""},
       flowId: {value:""},
       path: {value:""},
+      env_var: {value:""},
       cred: {value: "", type: 'firebase-config'}
     },
     inputs:1,
@@ -43,6 +44,11 @@
     <div class="form-row">
         <label for="node-input-path"><i class="icon-tag"></i> Path</label>
         <input type="text" id="node-input-path" placeholder="Path">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-env_var"><i class="icon-tag"></i> Environment variable to allow update</label>
+        <input type="text" id="node-input-env_var" placeholder="Env var">
     </div>
 
     <div class="form-row">
