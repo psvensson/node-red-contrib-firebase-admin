@@ -1,0 +1,62 @@
+<script type="text/javascript">
+  RED.nodes.registerType('flow-to-rtdb',{
+
+    category: 'firebase-admin',
+    color: '#a6bbcf',
+    defaults: {
+      name: {value:""},
+      flowId: {value:""},
+      path: {value:""},
+      cred: {value: "", type: 'firebase-config'}
+    },
+    inputs:1,
+    outputs:1,
+    icon: "firebase-admin-icon.png",
+    label: function() {
+      return this.name||"flow-to-rtdb";
+    },
+
+    oneditsave: function() {
+      let type = $('#apitype-select').val()
+      console.log('type is set to '+type)
+
+    },
+
+    oneditprepare: function() {
+      $('#apitype-select').change(function () {
+        $("#node-input-apitype").val($(this).find('option:selected').val())
+      });
+      $("#apitype-select").val($("#node-input-apitype").val())
+      $('#apitype-select').trigger('change');
+    }
+  });
+
+
+</script>
+
+<script type="text/x-red" data-template-name="flow-to-rtdb">
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-flowId"><i class="icon-tag"></i> Flow id</label>
+        <input type="text" id="node-input-flowId" placeholder="FlowId">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-path"><i class="icon-tag"></i> Path</label>
+        <input type="text" id="node-input-path" placeholder="Path">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-cred"><i class="icon-tag"></i> Credentials</label>
+        <input type="text" id="node-input-cred" placeholder="Credentials">
+    </div>
+
+</script>
+
+<script type="text/x-red" data-help-name="flow-to-rtdb">
+    <p>A node that wraps the flow-to-rtdb SDK.</p>
+</script>

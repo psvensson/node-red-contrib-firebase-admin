@@ -1,6 +1,6 @@
 {
   "name": "node-red-contrib-firebase-admin",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A node-red module that wraps the server-side  admin SDK of firebase, firestore, et.c.",
   "main": "index.js",
   "scripts": {
@@ -12,7 +12,9 @@
   },
   "author": "",
   "license": "MIT",
-  "keywords": [ "node-red" ],
+  "keywords": [
+    "node-red"
+  ],
   "bugs": {
     "url": "https://github.com/psvensson/node-red-contrib-firebase-admin/issues"
   },
@@ -27,10 +29,13 @@
       "firestore-add": "firestore-add.js",
       "firestore-get": "firestore-get.js",
       "firestore-query": "firestore-query.js",
-      "firebase-config": "firebase-config.js"
+      "firebase-config": "firebase-config.js",
+      "flow-to-rtdb": "flow-to-rtdb.js",
+      "rtdb-to-flow": "rtdb-to-flow.js"
     }
   },
   "dependencies": {
+    "@node-red/runtime": "^0.20.6",
     "firebase-admin": "^8.0.0"
   }
 }
