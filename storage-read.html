@@ -1,0 +1,43 @@
+<script type="text/javascript">
+  RED.nodes.registerType('storage-read',{
+
+    category: 'firebase-admin',
+    color: '#a6bbcf',
+    defaults: {
+      name: {value:""},
+      path: {value:""},
+      bucket: {value:""},
+      cred: {value: "", type: 'firebase-config'}
+    },
+    inputs:1,
+    outputs:1,
+    icon: "firebase-admin-icon.png",
+    label: function() {
+      return this.name||"storage-read";
+    }
+
+  });
+
+</script>
+
+<script type="text/x-red" data-template-name="storage-read">
+  <div class="form-row">
+  <label for="node-input-bucket"><i class="icon-tag"></i> Bucket Name</label>
+<input type="text" id="node-input-bucket" placeholder="Bucket Name">
+  </div>
+
+  <div class="form-row">
+  <label for="node-input-path"><i class="icon-tag"></i> Path</label>
+<input type="text" id="node-input-path" placeholder="Path">
+  </div>
+
+  <div class="form-row">
+  <label for="node-input-cred"><i class="icon-tag"></i> Credentials</label>
+<input type="text" id="node-input-cred" placeholder="Name">
+  </div>
+
+  </script>
+
+  <script type="text/x-red" data-help-name="storage-read">
+  <p>A node that read files from bucket path in google cloud storage</p>
+</script>
