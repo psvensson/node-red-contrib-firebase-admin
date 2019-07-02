@@ -17,9 +17,6 @@ module.exports = function(RED) {
       this.path = config.path
     }
 
-    console.log('------------------------------- rtdg-get config')
-    console.dir(config)
-
     //console.log('configuring storage-read to listen for messages')
     node.on('input', function(msg) {
       if(msg && msg.payload){

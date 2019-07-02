@@ -106,8 +106,25 @@ If the payload defines an optional bucket property, it will override the default
 
 input: {"payload":{"bucket": "xyzzyz123.appspot.com", "path": "myFile.txt"}}
 
-output: Buffer[]  containing the binary file contents
+npm publish .output: Buffer object containing the binary file contents. Can easily be converted to a string by calling toString() on the Buffer.
  
+## storage-write
+Writes the content of  JavaScript Buffer object to a file path in a storage bucket. 
+
+input: 
+
+    {
+        "payload": { 
+            "bucket": "abc.appspot.com", // optional, is otherwise set as node config
+            "path": "foo/bar/baz.json", // optional, see above
+            "contents": <Buffer obj>,
+            "contentType": "application/json" }, // optional
+            "metadata": { "very":"interesting"}, // optional
+            "public": true, // optional
+            "private": false // optional
+        }
+    } 
+    
 
 # Auth nodes
 
