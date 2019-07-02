@@ -28,6 +28,8 @@ module.exports = function(RED) {
         credential: credobj,
         databaseURL: this.dburl
       });
+      let global = this.context().global
+      global.set('firebase', _admin)
       console.log('setting storage....')
 
       s = new Storage({

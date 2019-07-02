@@ -26,29 +26,14 @@ module.exports = function(RED) {
         let path = msg.payload.path || this.path
         let bucket = msg.payload.bucket || this.bucket
         console.log('storage-read reading from bucket "'+bucket+'" path "'+path+'"')
-
-        this.storage.getBuckets().then((results)=>{
-          const [buckets] = results;
-
-          console.log('Buckets:');
-          buckets.forEach(bucket => {
-            console.log(bucket.name);
-          });
-
-
-          this.storage
-          .bucket(bucket)
-          .file(path).download().then((file)=>{
-            console.log('storage-read got file')
-            //console.dir(file)
-            node.send({payload:file})
-
-          })
-
+        this.storage
+        .bucket(bucket)
+        .file(path).download().then((file)=>{
+          console.log('storage-read got file')
+          //console.dir(file)
+          node.send({payload:file})
 
         })
-
-
       }
     }.bind(this));
 

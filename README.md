@@ -11,6 +11,15 @@ This means that the nodes can run outside of the normal security rules, in admin
 The configuration needs two parameters, the first is the text of the service account credentials private key file. This can be found by going to the firebase console, then to the cogwheel icon at the top left then to project settings and then "Service Accounts". Click "Generate new private key)".
 The second parameter is the database url for the database, and th url has the format of "https://myprojectname.firebaseio.com" and can also be fpund in the above place in the firebase console.
 
+After initializing, the reference to the firebase SDK is stored in the global context variable 'firebase', which can be used
+in any function like this;
+
+    let fb = global.get('firebase')
+    fb.firestore().doc('foo/bar').get().then((ref)=>{
+        let d = ref.data()
+        node.send( {payload: {data: d}});
+    })
+
 # Realtime Database (rtdb) Nodes
 
 ## rtdb-get
