@@ -38,6 +38,8 @@ module.exports = function(RED) {
         credentials: this.credentials
       })
 
+      global.set('cloud-storage', s)
+
       //s = new Storage()
     }
   }

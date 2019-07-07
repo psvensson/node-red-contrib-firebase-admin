@@ -26,8 +26,8 @@ module.exports = function(RED) {
           private: msg.payload.private || true,
           public: msg.payload.public || true,
         }
-        console.log('storage-write writing file to bucket "'+bucket+'" path "'+path+'"')
-        console.dir(msg.payload)
+        console.log('storage-write writing file to bucket "'+bucket+'" path "'+path+'" contents is of type '+(typeof contents))
+        console.dir(contents)
         const myBucket = this.storage.bucket(bucket);
         const file = myBucket.file(path);
         file.save(contents, options, function(err) {

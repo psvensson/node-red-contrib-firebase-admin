@@ -20,6 +20,8 @@ in any function like this;
         node.send( {payload: {data: d}});
     })
 
+The cloud-storage reference is also made available under the global context variable 'cloud-storage'.
+
 # Realtime Database (rtdb) Nodes
 
 ## rtdb-get
@@ -104,7 +106,14 @@ output: An array of the results of the query.
 Read file data from a file at a given path under a given cloud storage bucket. The default bucket to be used can be set in the general firebase SDK settings.
 If the payload defines an optional bucket property, it will override the default bucket settings.
 
-input: {"payload":{"bucket": "xyzzyz123.appspot.com", "path": "myFile.txt"}}
+input:  
+
+    {
+        "payload": {
+            "bucket": "xyzzyz123.appspot.com", 
+            "path": "myFile.txt"
+         }
+    }
 
 npm publish .output: Buffer object containing the binary file contents. Can easily be converted to a string by calling toString() on the Buffer.
  
@@ -124,6 +133,29 @@ input:
             "private": false // optional
         }
     } 
+    
+## storage-list
+Lists the contents of files in a bucket
+
+If "path" is defined in the payload, only files beginning with that path will be returned. I fomitted, the root level of the bucket is listed.
+A path can also be deep likes this; "foo/bar/baz". "delimiter" is the charatcer used to delimit directory levels, "/" by default. 
+
+input: 
+    
+    {
+        "payload": {
+            "bucket": "xyzzyz123.appspot.com",  // optional
+            "path": "directory1", // optional
+            "delimiter": "/" // optional
+         }
+    }
+
+output: An array of google cloud-storage File objects. If you take this output and send it to a function which outputs a payload like this;
+
+    {"files": array_of_File_obejcts}
+    
+The storage-read module will read all file contents and output an array of Buffer objects instead of the normal one.    
+
     
 
 # Auth nodes
