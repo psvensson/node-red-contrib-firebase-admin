@@ -154,7 +154,7 @@ output: An array of google cloud-storage File objects. If you take this output a
 
     {"files": array_of_File_obejcts}
     
-The storage-read module will read all file contents and output an array of Buffer objects instead of the normal one.    
+The storage-read module will read all file contents and output an object of filename keyed Buffer objects instead of the normal one.    
 
     
 
