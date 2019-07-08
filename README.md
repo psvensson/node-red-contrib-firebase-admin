@@ -134,6 +134,12 @@ input:
         }
     } 
     
+output:
+
+    {
+        "payload": {"success": true, "filename": "foo/bar.txt"}  // ot false if an error occurred
+    }    
+    
 ## storage-list
 Lists the contents of files in a bucket
 
