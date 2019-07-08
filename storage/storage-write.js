@@ -33,8 +33,10 @@ module.exports = function(RED) {
         file.save(contents, options, function(err) {
           if (!err) {
             // File written successfully.
+            node.send({payload:{success:true, filename: path}})
           } else {
             console.log('cloud storage write error: '+err)
+            node.send({payload:{success:false, filename: path}})
           }
         });
       }
