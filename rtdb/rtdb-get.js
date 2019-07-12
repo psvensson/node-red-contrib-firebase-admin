@@ -47,6 +47,7 @@ module.exports = function(RED) {
       }
     }.bind(this));
 
+    setUpListener(path)
 
   }
   RED.nodes.registerType("rtdb-get", FirebaseAdmin);

@@ -1,6 +1,6 @@
 # node-red-contrib-firebase-admin
 
-A node-red module that wraps the server-side  admin SDK of firebase, firestore, et.c.
+A node-red module that wraps the server-side  admin SDK of firebase, firestore, cloud storage, et.c.
 
 # Overview
 The main difference of this module and all other firebase/store modules for node-red is

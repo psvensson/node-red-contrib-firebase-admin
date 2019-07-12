@@ -12,6 +12,13 @@ module.exports = function(RED) {
       this.admin = c.admin
     }
 
+    const setup = ()=>{
+      if(unsub){
+        unsub()
+      }
+      this.admin.firestore().doc(path).onSnapshot(cb)
+    }
+
     const cb = (res)=>{
       console.log('firestore get result '+res)
       console.dir(res)
@@ -23,14 +30,12 @@ module.exports = function(RED) {
     node.on('input', function(msg) {
       if(msg && msg.payload){
         const path = msg.payload.path
-        if(unsub){
-          unsub()
-        }
-        this.admin.firestore().doc(path).onSnapshot(cb)
+        setup()
 
       }
     }.bind(this));
 
+    setup()
 
   }
   RED.nodes.registerType("firestore-get", FirebaseAdmin);
