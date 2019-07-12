@@ -9,15 +9,15 @@ module.exports = function(RED) {
     var node = this;
 
     const cb = (res)=>{
-      //console.log('firebase get result '+res)
-      //console.dir(res)
+      console.log('firebase get result '+res)
+      console.dir(res)
       let val = res.val()
       //console.log('val='+val)
       node.send({payload:val})
     }
 
     let setUpListener = (path)=>{
-      //console.log('rtdb-get setUpListener for path '+path)
+      console.log('rtdb-get setUpListener for path '+path)
       if(oldpath){
         this.admin.database().ref(oldpath).off('value', cb)
       }
