@@ -30,12 +30,15 @@ module.exports = function(RED) {
     node.on('input', function(msg) {
       if(msg && msg.payload){
         const path = msg.payload.path
-        setup()
+        setup(path)
 
       }
     }.bind(this));
 
-    setup()
+    if(config.path){
+      setup(config.path)
+    }
+
 
   }
   RED.nodes.registerType("firestore-get", FirebaseAdmin);
