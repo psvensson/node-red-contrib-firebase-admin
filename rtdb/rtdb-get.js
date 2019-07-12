@@ -10,9 +10,9 @@ module.exports = function(RED) {
 
     const cb = (res)=>{
       console.log('firebase get result '+res)
-      console.dir(res)
+      //console.dir(res)
       let val = res.val()
-      //console.log('val='+val)
+      console.dir(val)
       node.send({payload:val})
     }
 
