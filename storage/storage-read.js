@@ -13,6 +13,7 @@ module.exports = function(RED) {
       this.storage = c.storage
       this.bucket = config.bucket || c.bucket
       this.path = config.path
+      console.log('storage-read set this.storage')
     }
 
     //console.log('configuring storage-read to listen for messages')
@@ -44,7 +45,7 @@ module.exports = function(RED) {
               })
             })(_file)
           })
-        } else {
+        } else if(msg){
           console.log('* reading single file from path '+path)
           try{
             this.storage
@@ -63,7 +64,8 @@ module.exports = function(RED) {
             console.log('storage-read caught exception: '+ex)
             node.send(msg)
           }
-
+        } else {
+          console.log('----- storage-read ignoring empty message!')
         }
       }
     }.bind(this));
