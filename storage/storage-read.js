@@ -45,19 +45,25 @@ module.exports = function(RED) {
             })(_file)
           })
         } else {
-          console.log('reading single file from path '+path)
-          this.storage
-          .bucket(bucket)
-          .file(path).download().then((file)=>{
-            console.log('storage-read got file')
-            //console.dir(file)
-            msg.payload = file
+          console.log('* reading single file from path '+path)
+          try{
+            this.storage
+            .bucket(bucket)
+            .file(path).download().then((file)=>{
+              console.log('storage-read got file')
+              //console.dir(file)
+              msg.payload = file
+              node.send(msg)
+            }, (fail)=>{
+              console.log('storage-read could not find single file '+path)
+              msg.payload = undefined
+              node.send(msg)
+            })
+          } catch(ex){
+            console.log('storage-read caught exception: '+ex)
             node.send(msg)
-          }, (fail)=>{
-            console.log('storage-read could not find single file '+path)
-            msg.payload = undefined
-            node.send(msg)
-          })
+          }
+
         }
       }
     }.bind(this));
