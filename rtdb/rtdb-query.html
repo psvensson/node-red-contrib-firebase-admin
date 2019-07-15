@@ -47,4 +47,21 @@
 
 <script type="text/x-red" data-help-name="rtdb-query">
     <p>A node that wraps the rtdb-query SDK</p>
+    Set up a reactive query for a path in the rtdb database.
+<p>
+input: {"payload": {"path": "foo/bar", queries:[], on: "value}}
+<p>
+on: "value" (can also be "child_added", "child_removed", "child_changed", "child_moved").
+If an "on" property is missing, on: "value" is assumed as default
+<p>
+Where each query is an object that can look like either of the following examples;
+   <p>
+- {"startAt": "foo"}
+- {"endAt": "bar"}
+- {"equalTo": "quux"}
+- {"orderBy": "child", "value": "height"}  (can also be "key" or "value)
+- {"limitTo": "last", "value": 3}  (can also be "first")
+<p>
+output: [an array of results for the query]
+
 </script>

@@ -29,13 +29,25 @@ Get data from a path in the rtdb database
 
 input: {"payload": {"path": "foo/bar"}}
 
-output: <whatever data was at the path "foo/bar" in the rtdb database>
+output: whatever data was at the path "foo/bar" in the rtdb database
+
+## rtdb-on
+Set up a snapshot listsner for a path in the rtdb database
+
+input: {"payload": {"path": "foo/bar"}}
+
+output: whatever data was at the path "foo/bar" in the rtdb database, when changed
+
 
 ## rtdb-set
 Set data at a path in the rtdb database. Use "on" snapshot so will fire every time the data at the path changes and so drive flow execution from that point.
 
+input: {"payload": {"path": "foo/bar", "obj": {"the": "object"}}
+
 ## rtdb-push
 Pushes the new object onto an array under the path
+
+input: {"payload": {"path": "foo/bar", "obj": {"the": "object"}}
 
 ## rtdb-query
 Set up a reactive query for a path in the rtdb database. 
@@ -63,7 +75,14 @@ Get data from a document path in the firestore database
 
 input: {"payload": {"path": "foo/bar"}}
 
-output: <the document at the path "foo/bar" in the firestore database>
+output: the document at the path "foo/bar" in the firestore database
+
+## firestore-on
+Set up a snapshot listener fo a document path in the firestore database
+
+input: {"payload": {"path": "foo/bar"}}
+
+output: the document at the path "foo/bar" in the firestore database, when changed
 
 ## firestore-set
 Set data at a path in the firestore database. Uses "onSnapshot" so will fire every time the data at the path changes and so drive flow execution from that point.
@@ -115,7 +134,7 @@ input:
          }
     }
 
-npm publish .output: Buffer object containing the binary file contents. Can easily be converted to a string by calling toString() on the Buffer.
+output: Buffer object containing the binary file contents. Can easily be converted to a string by calling toString() on the Buffer.
  
 ## storage-write
 Writes the content of  JavaScript Buffer object to a file path in a storage bucket. 

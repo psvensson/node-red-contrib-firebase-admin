@@ -16,7 +16,7 @@ module.exports = function(RED) {
       if(unsub){
         unsub()
       }
-      this.admin.firestore().doc(path).get().then(cb)
+      this.admin.firestore().doc(path).onSnapshot(cb)
     }
 
     const cb = (res)=>{
@@ -47,5 +47,5 @@ module.exports = function(RED) {
 
 
   }
-  RED.nodes.registerType("firestore-get", FirebaseAdmin);
+  RED.nodes.registerType("firestore-on", FirebaseAdmin);
 }

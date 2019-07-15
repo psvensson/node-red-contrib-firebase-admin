@@ -1,5 +1,5 @@
 <script type="text/javascript">
-  RED.nodes.registerType('rtdb-get',{
+  RED.nodes.registerType('firestore-on',{
 
     category: 'firebase-admin',
     color: '#a6bbcf',
@@ -12,7 +12,7 @@
     outputs:1,
     icon: "firebase-admin-icon.png",
     label: function() {
-      return this.name||"rtdb-get";
+      return this.name||"firestore-on";
     },
 
     oneditsave: function() {
@@ -33,7 +33,7 @@
 
 </script>
 
-<script type="text/x-red" data-template-name="rtdb-get">
+<script type="text/x-red" data-template-name="firestore-on">
     <div class="form-row">
         <label for="node-input-name"><i class="icon-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
@@ -46,16 +46,16 @@
 
     <div class="form-row">
         <label for="node-input-cred"><i class="icon-tag"></i> Credentials</label>
-        <input type="text" id="node-input-cred" placeholder="Name">
+        <input type="text" id="node-input-cred" placeholder="Credentials">
     </div>
 
 </script>
 
-<script type="text/x-red" data-help-name="rtdb-get">
-    <p>Get data from a path in the rtdb database </p>
+<script type="text/x-red" data-help-name="firestore-on">
+    <p>A node that wraps the firestore-on SDK</p>
+    Get data from a document path in the firestore database
 <p>
 input: {"payload": {"path": "foo/bar"}}
-</p><p>
-output: whatever data was at the path "foo/bar" in the rtdb database</p>
-</p>
+<p>
+output: <the document at the path "foo/bar" in the firestore database>
 </script>

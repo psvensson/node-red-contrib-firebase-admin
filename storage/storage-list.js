@@ -1,7 +1,5 @@
 
 
-let oldpath
-
 module.exports = function(RED) {
 
   function FirebaseAdmin(config) {
@@ -37,7 +35,8 @@ module.exports = function(RED) {
           console.log('got file listing')
           //console.dir(files[0])
           let f = files[0].filter((e)=>{ return e.name[e.name.length-1] !== '/' })
-          node.send({payload: {files: f}})
+          msg.payload = {files: f}
+          node.send(msg)
         })
       }
     }.bind(this));

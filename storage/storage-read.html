@@ -40,4 +40,19 @@
 
   <script type="text/x-red" data-help-name="storage-read">
   <p>A node that read files from bucket path in google cloud storage</p>
+  Read file data from a file at a given path under a given cloud storage bucket. The default bucket to be used can be set in the general firebase SDK settings.
+If the payload defines an optional bucket property, it will override the default bucket settings.
+<p>
+
+input:
+
+    {
+        "payload": {
+            "bucket": "xyzzyz123.appspot.com",
+            "path": "myFile.txt"
+         }
+    }
+<p>
+output: Buffer object containing the binary file contents. Can easily be converted to a string by calling toString() on the Buffer.
+
 </script>

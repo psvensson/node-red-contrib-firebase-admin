@@ -1,4 +1,4 @@
-
+let msgin
 let unsub
 
 module.exports = function(RED) {
@@ -16,13 +16,15 @@ module.exports = function(RED) {
       console.dir(res)
       let val = res.docs.map((d)=>{return d.data()})
       console.log('val='+val)
-      node.send({payload:val})
+      msgin.payload = val
+      node.send(msgin)
     }
 
     node.on('input', function(msg) {
       console.log('firestore-query got input')
       console.dir(msg.payload)
       if(msg && msg.payload){
+        msgin = msg
         const path = msg.payload.path
         if(unsub){
           unsub()

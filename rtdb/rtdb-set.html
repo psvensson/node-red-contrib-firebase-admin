@@ -47,4 +47,7 @@
 
 <script type="text/x-red" data-help-name="rtdb-set">
     <p>A node that wraps the rtdb-set SDK</p>
+    Set data at a path in the rtdb database. Use "on" snapshot so will fire every time the data at the path changes and so drive flow execution from that point.
+<p>
+input: {"payload": {"path": "foo/bar", "obj": {"the": "object"}}
 </script>

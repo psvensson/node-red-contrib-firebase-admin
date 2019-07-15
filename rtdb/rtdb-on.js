@@ -1,4 +1,6 @@
 
+
+let oldpath
 let msgin
 
 module.exports = function(RED) {
@@ -8,7 +10,7 @@ module.exports = function(RED) {
     var node = this;
 
     const cb = (res)=>{
-      console.log('firebase rtdb-get result '+res)
+      console.log('firebase get result '+res)
       //console.dir(res)
       let val = res.val()
       //console.dir(val)
@@ -18,19 +20,19 @@ module.exports = function(RED) {
       } else {
         node.send({payload: val})
       }
+
     }
 
     let setUpListener = (path)=>{
-      console.log('* rtdb-get setUpListener for path '+path)
+      console.log('rtdb-on setUpListener for path '+path)
+      if(oldpath){
+        this.admin.database().ref(oldpath).off('value', cb)
+      }
       if(path){
-        this.admin.database().ref(path).once('value').then((res)=>{
-          cb(res)
-        }, (fail)=>{
-          console.log('rtdb-get failure ')
-          console.dir(fail)
-        })
+        this.admin.database().ref(path).on('value', cb)
+        oldpath = path
       }  else {
-        console.log('----- rtdb-get got empty path !!')
+        console.log('----- rtdb-on got empty path !!')
         console.dir(config)
       }
     }
@@ -48,7 +50,7 @@ module.exports = function(RED) {
     }
 
 
-    //console.log('configuring rtdb-get to listen for messages')
+    //console.log('configuring rtdb-on to listen for messages')
     node.on('input', function(msg) {
       let path = this.path
       if(msg && msg.payload){
@@ -58,7 +60,6 @@ module.exports = function(RED) {
       }
     }.bind(this));
 
-
   }
-  RED.nodes.registerType("rtdb-get", FirebaseAdmin);
+  RED.nodes.registerType("rtdb-on", FirebaseAdmin);
 }

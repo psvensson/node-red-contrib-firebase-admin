@@ -47,4 +47,25 @@
 
 <script type="text/x-red" data-help-name="firestore-query">
     <p>A node that wraps the firestore-query SDK</p>
+    Set up a reactive query for a collection in the firestore database.
+<p>
+input:
+<p>
+    {
+        "payload": {
+            "path": "foo/bar",
+            "queries":[],
+            "limit": 7,
+            "startAt": 4000,  // follows the orderBy property
+            "endAt": 4050, // follows the orderBy property
+            "orderBy": "shoeSize",
+            "orderDirection": "asc", //default is "desc"
+            "queries":[
+                {"company", "==", "ACME"},
+                {"createdAt", ">", 1560099394242}
+            ]
+        }
+<p>
+output: An array of the results of the query.
+
 </script>

@@ -1,5 +1,5 @@
 
-
+let msgin
 let oldpath
 let oldeventtype
 
@@ -18,11 +18,13 @@ module.exports = function(RED) {
       console.dir(res)
       let val = res.val()
       console.log('val='+val)
-      node.send({payload:val})
+      msgin.payload = val
+      node.send(msgin)
     }
 
     node.on('input', function(msg) {
       if(msg && msg.payload){
+        msgin = msg
         const path = msg.payload.path
         const eventtype = msg.payload.on || 'value'
         if(oldpath){

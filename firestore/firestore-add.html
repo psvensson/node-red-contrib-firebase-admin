@@ -47,4 +47,10 @@
 
 <script type="text/x-red" data-help-name="firestore-add">
     <p>A node that wraps the firestore-add SDK</p>
+    Adds the new object under the collection the path describes and assigns it a random id
+<p>
+input: {"payload": {"path": "foo/bar"}, {"some": object, "foo": 17}}
+<p>
+output: The id of the new document
+
 </script>

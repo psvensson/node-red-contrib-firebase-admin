@@ -40,4 +40,26 @@
 
 <script type="text/x-red" data-help-name="storage-write">
   <p>A node that read files from bucket path in google cloud storage</p>
+  Writes the content of  JavaScript Buffer object to a file path in a storage bucket.
+<p>
+input:
+
+    {
+        "payload": {
+            "bucket": "abc.appspot.com", // optional, is otherwise set as node config
+            "path": "foo/bar/baz.json", // optional, see above
+            "contents": <Buffer obj>,
+            "contentType": "application/json" }, // optional
+            "metadata": { "very":"interesting"}, // optional
+            "public": true, // optional
+            "private": false // optional
+        }
+    }
+    <p>
+output:
+
+    {
+        "payload": {"success": true, "filename": "foo/bar.txt"}  // ot false if an error occurred
+    }
+
 </script>

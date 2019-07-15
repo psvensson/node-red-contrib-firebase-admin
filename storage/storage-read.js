@@ -1,7 +1,5 @@
 
 
-let oldpath
-
 module.exports = function(RED) {
 
   function FirebaseAdmin(config) {
@@ -20,8 +18,8 @@ module.exports = function(RED) {
     //console.log('configuring storage-read to listen for messages')
     node.on('input', function(msg) {
       if(msg && msg.payload){
-        let path = msg.payload.path || this.path
-        let bucket = msg.payload.bucket || this.bucket
+        let path = msg.payload.path || msg.path || this.path
+        let bucket = msg.payload.bucket || msg.bucket || this.bucket
         console.log('------------------------------ storage-read reading from bucket "'+bucket+'" path "'+path+'"')
         if(msg.payload.files && msg.payload.files.length > 0){
           console.log('--reading from files')
@@ -36,12 +34,13 @@ module.exports = function(RED) {
                 console.log('storage-read got file '+file.name)
                 rv[file.name] = content
                 if(--count === 0){
-                  console.log('all files done, sending..')
-                  for(let x in rv){
-                    console.log(x)
-                  }
-                  node.send({payload:rv})
+                  msg.payload = rv
+                  node.send(msg)
                 }
+              }, (fail)=>{
+                console.log('storage-read could not find file '+path)
+                msg.payload = undefined
+                node.send(msg)
               })
             })(_file)
           })
@@ -52,8 +51,12 @@ module.exports = function(RED) {
           .file(path).download().then((file)=>{
             console.log('storage-read got file')
             //console.dir(file)
-            node.send({payload:file})
-
+            msg.payload = file
+            node.send(msg)
+          }, (fail)=>{
+            console.log('storage-read could not find single file '+path)
+            msg.payload = undefined
+            node.send(msg)
           })
         }
       }
