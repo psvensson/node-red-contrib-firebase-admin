@@ -1,8 +1,8 @@
 const _admin = require('firebase-admin')
 const {Storage} = require('@google-cloud/storage');
 
-
-let init = false
+let global = this.context().global
+let init = (global.get('firebase') !== undefined)
 let s
 
 module.exports = function(RED) {
@@ -28,7 +28,7 @@ module.exports = function(RED) {
         credential: credobj,
         databaseURL: this.dburl
       });
-      let global = this.context().global
+
       global.set('firebase', _admin)
       console.log('setting storage....')
 
