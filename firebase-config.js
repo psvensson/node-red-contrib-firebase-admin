@@ -1,7 +1,7 @@
 const _admin = require('firebase-admin')
 const {Storage} = require('@google-cloud/storage');
 
-let global = this.context().global
+
 let init = !(_admin.apps.length === 0)
 let s
 
@@ -29,6 +29,8 @@ module.exports = function(RED) {
         databaseURL: this.dburl
       });
 
+      let global = this.context().global
+
       global.set('firebase', _admin)
       console.log('setting storage....')
 
@@ -37,6 +39,7 @@ module.exports = function(RED) {
         //email: 'firebase-adminsdk-d1xiy@something-2e584.iam.gserviceaccount.com',
         credentials: this.credentials
       })
+
 
       global.set('cloud-storage', s)
 
