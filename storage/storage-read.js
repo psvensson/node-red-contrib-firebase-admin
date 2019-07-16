@@ -14,12 +14,13 @@ module.exports = function(RED) {
       storage = this.storage
       this.bucket = config.bucket || c.bucket
       this.path = config.path
-      console.log('storage-read set this.storage to '+c.storage)
+
       console.log('config is '+config)
     }
 
     let global = this.context().global
-    this.torage = global.get('cloud-storage')
+    this.storage = global.get('cloud-storage')
+    console.log('* storage-read set this.storage to '+this.storage)
 
     //console.log('configuring storage-read to listen for messages')
     node.on('input', function(msg) {
