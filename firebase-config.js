@@ -15,36 +15,32 @@ module.exports = function(RED) {
     //------------------------------
     this.admin = _admin
     this.storage = s
-    if(!init){
+    let global = this.context().global
+    if(!init)
+    {
       console.log('setting admin....')
       this.credentials = JSON.parse(this.cred);
-      let credobj = _admin.credential.cert(this.credentials)
+      let credobj      = _admin.credential.cert(this.credentials)
       //console.dir(credobj)
       //process.env.GOOGLE_APPLICATION_CREDENTIALS = 'creds.json'
       init = true
 
-      console.log('*** parsed firebase credentials: '+this.credentials.type+', project-id: '+this.credentials.project_id)
+      console.log('*** parsed firebase credentials: ' + this.credentials.type + ', project-id: ' + this.credentials.project_id)
       _admin.initializeApp({
-        credential: credobj,
-        databaseURL: this.dburl
+        credential: credobj, databaseURL: this.dburl
       });
-
-      let global = this.context().global
-
       global.set('firebase', _admin)
-      console.log('********************************************************** setting storage....')
-
-      s = new Storage({
-        //projectId: 'something-2e584',
-        //email: 'firebase-adminsdk-d1xiy@something-2e584.iam.gserviceaccount.com',
-        credentials: this.credentials
-      })
-
-
-      global.set('cloud-storage', s)
-
-      //s = new Storage()
     }
+    console.log('********************************************************** setting storage....')
+    s = new Storage({
+      //projectId: 'something-2e584',
+      //email: 'firebase-adminsdk-d1xiy@something-2e584.iam.gserviceaccount.com',
+      credentials: this.credentials
+    })
+    global.set('cloud-storage', s)
+
+    //s = new Storage()
+
   }
   RED.nodes.registerType("firebase-config", FirebaseConfigNode);
 }
