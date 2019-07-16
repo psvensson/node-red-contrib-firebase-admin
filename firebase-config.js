@@ -32,7 +32,7 @@ module.exports = function(RED) {
       let global = this.context().global
 
       global.set('firebase', _admin)
-      console.log('setting storage....')
+      console.log('********************************************************** setting storage....')
 
       s = new Storage({
         //projectId: 'something-2e584',
