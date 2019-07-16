@@ -1,5 +1,5 @@
 
-
+let storage
 module.exports = function(RED) {
 
   function FirebaseAdmin(config) {
@@ -11,6 +11,7 @@ module.exports = function(RED) {
       let c = RED.nodes.getNode(config.cred)
       this.admin = c.admin
       this.storage = c.storage
+      storage = this.storage
       this.bucket = config.bucket || c.bucket
       this.path = config.path
       console.log('storage-read set this.storage')
@@ -21,7 +22,7 @@ module.exports = function(RED) {
       if(msg && msg.payload){
         let path = msg.payload.path || msg.path || this.path
         let bucket = msg.payload.bucket || msg.bucket || this.bucket
-        console.log('------------------------------ storage-read reading from bucket "'+bucket+'" path "'+path+'"')
+        console.log('------------------------------ storage-read reading from bucket "'+bucket+'" path "'+path+'" this.storage = '+this.storage+' storage = '+storage)
         if(msg.payload.files && msg.payload.files.length > 0){
           console.log('--reading from files')
           let count = msg.payload.files.length
@@ -48,8 +49,8 @@ module.exports = function(RED) {
         } else if(msg){
           console.log('* reading single file from path '+path)
           try{
-            this.storage
-            .bucket(bucket)
+            let s = this.storage || storage
+            s.bucket(bucket)
             .file(path).download().then((file)=>{
               console.log('storage-read got file')
               //console.dir(file)
