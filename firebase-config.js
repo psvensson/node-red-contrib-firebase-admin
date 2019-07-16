@@ -2,7 +2,7 @@ const _admin = require('firebase-admin')
 const {Storage} = require('@google-cloud/storage');
 
 let global = this.context().global
-let init = (global.get('firebase') !== undefined)
+let init = !(_admin.apps.length === 0)
 let s
 
 module.exports = function(RED) {
