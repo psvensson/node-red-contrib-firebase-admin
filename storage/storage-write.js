@@ -12,9 +12,15 @@ module.exports = function(RED) {
       this.storage = c.storage
       this.bucket = config.bucket || c.bucket
       this.path = config.path
+      /*
+      console.log('configuring storage-write to listen for messages. config is')
+      console.dir(config)
+      console.log('storage is')
+      console.dir(this.storage)
+       */
     }
 
-    //console.log('configuring storage-write to listen for messages')
+
     node.on('input', function(msg) {
       if(msg && msg.payload){
         let path = msg.payload.path || msg.path|| this.path

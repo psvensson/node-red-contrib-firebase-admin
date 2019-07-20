@@ -31,13 +31,16 @@ module.exports = function(RED) {
       });
       global.set('firebase', _admin)
     }
-    console.log('********************************************************** setting storage....')
-    s = new Storage({
-      //projectId: 'something-2e584',
-      //email: 'firebase-adminsdk-d1xiy@something-2e584.iam.gserviceaccount.com',
-      credentials: this.credentials
-    })
-    global.set('cloud-storage', s)
+    if(this.credentials){
+      //console.log('********************************************************** setting storage.... credentials are')
+      //console.dir(this.credentials)
+      s = new Storage({
+        projectId: this.credentials.project_id,
+        //email: 'firebase-adminsdk-d1xiy@something-2e584.iam.gserviceaccount.com',
+        credentials: this.credentials
+      })
+      global.set('cloud-storage', s)
+    }
 
     //s = new Storage()
 
