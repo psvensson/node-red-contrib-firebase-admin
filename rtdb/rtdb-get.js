@@ -52,7 +52,7 @@ module.exports = function(RED) {
     node.on('input', function(msg) {
       let path = this.path
       if(msg && msg.payload){
-        path = msg.payload.path
+        path = path || msg.payload.path
         msgin = msg
         setUpListener(path)
       }
