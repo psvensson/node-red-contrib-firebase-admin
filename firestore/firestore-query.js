@@ -33,18 +33,18 @@ module.exports = function(RED) {
 
         let dir = msg.payload.orderDirection ? msg.payload.orderDirection : 'desc'
 
-        if(msg.payload.orderBy){
+        if(typeof msg.payload.orderBy !== 'undefined'){
           console.log('orderBy dir = '+dir)
           ref = ref.orderBy(msg.payload.orderBy, dir)
         }
-        if(msg.payload.limit){
+        if(typeof msg.payload.limit  !== 'undefined'){
           ref = ref.limit(msg.payload.limit)
         }
-        if(msg.payload.startAt){
+        if(typeof msg.payload.startAt !== 'undefined'){
           console.log('startAt '+msg.payload.startAt)
           ref = ref.startAt(msg.payload.startAt)
         }
-        if(msg.payload.endAt){
+        if(typeof msg.payload.endAt  !== 'undefined'){
           console.log('endAt '+msg.payload.endAt)
           ref = ref.endAt(msg.payload.endAt)
         }

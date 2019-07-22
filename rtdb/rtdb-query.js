@@ -34,13 +34,13 @@ module.exports = function(RED) {
 
         // Decorate with queries
         if(msg.payload.queries && msg.payload.queries.length > 0){
-          console.log('found queries')
+          console.log('---------------------  found queries')
           let ordered = false
           msg.payload.queries.forEach((query)=>{
             console.dir(query)
-            if(query.orderBy){
+            if(typeof query.orderBy !== 'undefined'){
               ordered = true
-              console.log('setting explicit orderBy')
+              console.log('------- setting explicit orderBy')
               if(query.orderBy === 'value'){
                 ref = ref.orderByValue()
               } else if(query.orderBy === 'key'){
@@ -49,20 +49,20 @@ module.exports = function(RED) {
                 ref = ref.orderByChild(query.value)
               }
             }
-            if(query.startAt){
-              console.log('startAt '+query.startAt)
+            if(typeof query.startAt !== 'undefined'){
+              console.log('------- startAt '+query.startAt)
               ref = ref.startAt(query.startAt)
             }
-            if(query.endAt){
-              console.log('endAt '+query.endAt)
+            if(typeof query.endAt !== 'undefined'){
+              console.log('------- endAt '+query.endAt)
               ref = ref.endAt(query.endAt)
             }
-            if(query.equalTo){
-              console.log('equalTo '+query.equalTo)
+            if(typeof query.equalTo !== 'undefined'){
+              console.log('------- equalTo '+query.equalTo)
               ref = ref.equalTo(query.equalTo)
             }
-            if(query.limitTo){
-              console.log('limitTo '+query.limitTo+' -> '+query.value)
+            if(typeof query.limitTo !== 'undefined'){
+              console.log('------- limitTo '+query.limitTo+' -> '+query.value)
               if(query.limitTo === 'first'){
                 ref = ref.limitToFirst(query.value)
               } else if(query.limitTo === 'last'){
@@ -76,8 +76,8 @@ module.exports = function(RED) {
           }
         }
 
-        console.log('finished rtdb query is')
-        console.dir(ref.queryParams_)
+        //console.log('finished rtdb query is')
+        //console.dir(ref.queryParams_)
 
         ref.on(eventtype, cb)
         oldpath = path
