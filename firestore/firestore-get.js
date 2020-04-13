@@ -12,7 +12,7 @@ module.exports = function(RED) {
       this.admin = c.admin
     }
 
-    const setup = ()=>{
+    const setup = (path)=>{
       if(unsub){
         unsub()
       }
