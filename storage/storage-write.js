@@ -9,7 +9,8 @@ module.exports = function(RED) {
     if(config.cred){
       let c = RED.nodes.getNode(config.cred)
       this.admin = c.admin
-      this.storage = c.storage
+      let global = this.context().global
+      this.storage = c.storage || global.get('cloud-storage')
       this.bucket = config.bucket || c.bucket
       this.path = config.path
       /*
@@ -21,7 +22,7 @@ module.exports = function(RED) {
     }
 
 
-    node.on('input', function(msg) {
+    node.on('input', function(msg) {     
       if(msg && msg.payload){
         let path = msg.payload.path || msg.path|| this.path
         let bucket = msg.payload.bucket || msg.bucket || this.bucket
@@ -40,7 +41,7 @@ module.exports = function(RED) {
             // File written successfully.
             msg.payload={success:true, filename: path}
           } else {
-            console.log('cloud storage write error: '+err)
+            console.log('cloud storage write error: '+JSON.stringify(err))
             msg.payload ={success:false, filename: path}
           }
           node.send(msg)

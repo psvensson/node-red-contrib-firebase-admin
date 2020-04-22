@@ -10,8 +10,8 @@ module.exports = function(RED) {
     if(config.cred){
       let c = RED.nodes.getNode(config.cred)
       this.admin = c.admin
-      this.storage = c.storage
-      storage = this.storage
+      let global = this.context().global
+      this.storage = c.storage || global.get('cloud-storage')
       this.bucket = config.bucket || c.bucket
       this.path = config.path
 
