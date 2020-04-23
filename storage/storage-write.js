@@ -7,10 +7,10 @@ module.exports = function(RED) {
 
 
     if(config.cred){
-      let c = RED.nodes.getNode(config.cred)
+      let c = RED.nodes.getNode(config.cred);
+      this.config = c;
       this.admin = c.admin
-      let global = this.context().global
-      this.storage = c.storage || global.get('cloud-storage')
+      
       this.bucket = config.bucket || c.bucket
       this.path = config.path
       /*
@@ -24,6 +24,8 @@ module.exports = function(RED) {
 
     node.on('input', function(msg) {     
       if(msg && msg.payload){
+        let global = this.context().global
+        this.storage = this.config.storage || global.get('cloud-storage')
         let path = msg.payload.path || msg.path|| this.path
         let bucket = msg.payload.bucket || msg.bucket || this.bucket
         let contents = msg.payload.contents || msg.payload

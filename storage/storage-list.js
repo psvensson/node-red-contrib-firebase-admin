@@ -10,8 +10,7 @@ module.exports = function(RED) {
     if(config.cred){
       let c = RED.nodes.getNode(config.cred)
       this.admin = c.admin
-      let global = this.context().global
-      this.storage = c.storage || global.get('cloud-storage')
+      this.config = c;
       this.bucket = config.bucket || c.bucket
       this.path = config.path
     }
@@ -20,6 +19,8 @@ module.exports = function(RED) {
     //console.log('configuring storage-list to listen for messages')
     node.on('input', function(msg) {
       if(msg && msg.payload){
+        let global = this.context().global
+        this.storage = this.config.storage || global.get('cloud-storage')
         let path = msg.payload.path || this.path
         let bucket = msg.payload.bucket || this.bucket
         console.log('storage-list listing files from bucket "'+bucket+'" path "'+path+'"')

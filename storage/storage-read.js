@@ -9,6 +9,7 @@ module.exports = function(RED) {
 
     if(config.cred){
       let c = RED.nodes.getNode(config.cred)
+      this.config = c;
       this.admin = c.admin
       let global = this.context().global
       this.storage = c.storage || global.get('cloud-storage')
@@ -18,15 +19,16 @@ module.exports = function(RED) {
       console.log('config is '+config)
     }
 
-    let global = this.context().global
-    this.storage = global.get('cloud-storage')
-    console.log('* storage-read set this.storage to '+this.storage)
+    
 
     //console.log('configuring storage-read to listen for messages')
     node.on('input', function(msg) {
       if(msg && msg.payload){
         let path = msg.payload.path || msg.path || this.path
         let bucket = msg.payload.bucket || msg.bucket || this.bucket
+        let global = this.context().global
+        this.storage = global.get('cloud-storage')
+        console.log('* storage-read set this.storage to '+this.storage)
         console.log('------------------------------ storage-read reading from bucket "'+bucket+'" path "'+path+'" this.storage = '+this.storage)
         if(msg.payload.files && msg.payload.files.length > 0){
           console.log('--reading from files')
