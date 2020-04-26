@@ -70,6 +70,7 @@ module.exports = function(RED) {
             })
           } catch(ex){
             console.log('storage-read caught exception: '+ex)
+            msg.payload = ex
             node.send(msg)
           }
         } else {
