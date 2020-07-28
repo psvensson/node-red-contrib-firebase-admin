@@ -14,7 +14,8 @@ module.exports = function(RED) {
       if(msg && msg.payload){
         console.log('firestore-set got input')
         console.dir(msg)
-        const {path, obj, merge} = msg.payload
+        const {path, obj} = msg.payload
+        const merge = (msg.payload.merge == undefined) ? false : msg.payload.merge
         console.log('storing '+obj+' at firestore path '+path)
         this.admin.firestore().doc(path).set(obj, { merge }).then((res)=>{
           console.log('firestore set result '+res)
