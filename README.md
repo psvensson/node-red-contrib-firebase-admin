@@ -42,12 +42,12 @@ output: whatever data was at the path "foo/bar" in the rtdb database, when chang
 ## rtdb-set
 Set data at a path in the rtdb database. Use "on" snapshot so will fire every time the data at the path changes and so drive flow execution from that point.
 
-input: {"payload": {"path": "foo/bar", "obj": {"the": "object"}}
+input: {"payload": {"path": "foo/bar", "obj": {"the": "object"}}}
 
 ## rtdb-push
 Pushes the new object onto an array under the path
 
-input: {"payload": {"path": "foo/bar", "obj": {"the": "object"}}
+input: {"payload": {"path": "foo/bar", "obj": {"the": "object"}}}
 
 ## rtdb-query
 Set up a reactive query for a path in the rtdb database. 
@@ -181,7 +181,20 @@ output: An array of google cloud-storage File objects. If you take this output a
     
 The storage-read module will read all file contents and output an object of filename keyed Buffer objects instead of the normal one.    
 
-    
+## storage-delete
+Deletes a file at a given path under a given cloud storage bucket. The default bucket to be used can be set in the general firebase SDK settings.
+If the payload defines an optional bucket property, it will override the default bucket settings.
+
+input:  
+
+    {
+        "payload": {
+            "bucket": "xyzzyz123.appspot.com", 
+            "path": "myFile.txt"
+         }
+    }
+
+output: An array of headers returned by the operation if all went well. These are mostly useless but at least a confirmation of success.    
 
 # Auth nodes
 
