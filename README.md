@@ -194,9 +194,22 @@ input:
          }
     }
 
-output: An array of headers returned by the operation if all went well. These are mostly useless but at least a confirmation of success.    
+output: An array of headers returned by the operation if all went well. These are mostly useless but at least a confirmation of success. Dcoumentation and problem-solving hints can be found here; (https://firebase.google.com/docs/auth/admin/verify-id-tokens). Note that you need to explicitly get the correct id token in the client and send it to the back-end. 
 
 # Auth nodes
 
-TBD
+## verify-idtoken
+Decrypts a firebase client SDK JWT idToken into a user object.
+
+input:  
+
+    {
+        "payload": "eyJhbGciOiJSUz....fMrAUdK"
+    }
+
+output:
+
+    {
+        "payload": { "name": "Foo Foobarson", "picture": "https://...", ..}
+    }
 

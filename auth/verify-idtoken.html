@@ -1,0 +1,56 @@
+<script type="text/javascript">
+    RED.nodes.registerType('verify-idtoken',{
+  
+      category: 'firebase-admin',
+      color: '#a6bbcf',
+      defaults: {
+        name: {value:""},
+        cred: {value: "", type: 'firebase-config'}
+      },
+      inputs:1,
+      outputs:1,
+      icon: "firebase-auth.png",
+      label: function() {
+        return this.name||"verify-idtoken";
+      },
+  
+      oneditsave: function() {
+        let type = $('#apitype-select').val()
+        console.log('type is set to '+type)
+  
+      },
+  
+      oneditprepare: function() {
+        $('#apitype-select').change(function () {
+          $("#node-input-apitype").val($(this).find('option:selected').val())
+        });
+        $("#apitype-select").val($("#node-input-apitype").val())
+        $('#apitype-select').trigger('change');
+      }
+    });
+  
+  
+  </script>
+  
+  <script type="text/x-red" data-template-name="verify-idtoken">
+      <div class="form-row">
+          <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+          <input type="text" id="node-input-name" placeholder="Name">
+      </div>
+  
+      <div class="form-row">
+          <label for="node-input-cred"><i class="icon-tag"></i> Credentials</label>
+          <input type="text" id="node-input-cred" placeholder="Name">
+      </div>
+  
+  </script>
+  
+  <script type="text/x-red" data-help-name="verify-idtoken">
+      <p>A node that wraps the verify-idtoken API from the firebase-admin SDK</p>
+      Reoslved a given JWT token in payload as a user object for the current project (that the configured credentials is pointing to)
+  <p>
+  input: {"payload": "......JWT......"}
+  <p>
+  output: The decoded User object for the given JWT idToken
+  
+  </script>
