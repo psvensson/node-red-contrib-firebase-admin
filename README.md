@@ -204,7 +204,7 @@ Decrypts a firebase client SDK JWT idToken into a user object.
 input:  
 
     {
-        "payload": "eyJhbGciOiJSUz....fMrAUdK"
+        "payload": { idtoken: "eyJhbGciOiJSUz....fMrAUdK"}
     }
 
 output:
