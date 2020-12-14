@@ -1,6 +1,6 @@
 {
   "name": "node-red-contrib-firebase-admin",
-  "version": "1.1.26",
+  "version": "1.1.27",
   "description": "A node-red module that wraps the server-side  admin SDK of firebase, firestore, et.c.",
   "main": "index.js",
   "scripts": {
@@ -46,8 +46,8 @@
     }
   },
   "dependencies": {
-    "@google-cloud/storage": "^3.0.3",
+    "@google-cloud/storage": "^5.7.0",
     "@node-red/runtime": "^0.20.6",
-    "firebase-admin": "^8.0.0"
+    "firebase-admin": "^9.4.2"
   }
 }

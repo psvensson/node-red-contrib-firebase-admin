@@ -22,6 +22,8 @@ in any function like this;
 
 The cloud-storage reference is also made available under the global context variable 'cloud-storage'.
 
+*NOTE* If you run into problem, see if you're using any other firebase modules at the same time, which somtimes also define config nodes of their own called 'firebase-config' which can lead to unpredictable results.
+
 # Realtime Database (rtdb) Nodes
 
 ## rtdb-get
@@ -32,7 +34,7 @@ input: {"payload": {"path": "foo/bar"}}
 output: whatever data was at the path "foo/bar" in the rtdb database
 
 ## rtdb-on
-Set up a snapshot listsner for a path in the rtdb database
+Set up a snapshot listener for a path in the rtdb database
 
 input: {"payload": {"path": "foo/bar"}}
 
@@ -87,12 +89,12 @@ output: the document at the path "foo/bar" in the firestore database, when chang
 ## firestore-set
 Set data at a path in the firestore database. Uses "onSnapshot" so will fire every time the data at the path changes and so drive flow execution from that point.
 
-input: {"payload": {"path": "foo/bar"}, {"some": object, "foo": 17}}
+input: {"payload": {"path": "foo/bar", "obj": {"some": object, "foo": 17}}
 
 ## firestore-add
 Adds the new object under the collection the path describes and assigns it a random id
 
-input: {"payload": {"path": "foo/bar"}, {"some": object, "foo": 17}}
+input: {"payload": {"path": "foo/bar", "obj": {"some": object, "foo": 17}}
 
 output: The id of the new document
 
