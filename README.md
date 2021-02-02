@@ -105,16 +105,15 @@ input:
 
     {
         "payload": {
-            "path": "foo/bar", 
-            "queries":[], 
+            "path": "foo/bar",
             "limit": 7, 
             "startAt": 4000,  // follows the orderBy property
             "endAt": 4050, // follows the orderBy property
             "orderBy": "shoeSize",
             "orderDirection": "asc", //default is "desc"
             "queries":[
-                {"company", "==", "ACME"},
-                {"createdAt", ">", 1560099394242}
+                ["company", [=="] "ACME"],
+                ["createdAt", ">", 1560099394242]
             ]
         }
 
