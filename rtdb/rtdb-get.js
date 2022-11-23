@@ -5,18 +5,18 @@ module.exports = function (RED) {
     RED.nodes.createNode(this, config);
     var node = this;
 
-    const cb = (res) => {
+    const cb = (res,msg) => {
       console.log("firebase rtdb-get result " + JSON.stringify(res));
       let val = res.val();
-      if (msgin) {
-        msgin.payload = val;
-        node.send(msgin);
+      if (msg) {
+        msg.payload = val;
+        node.send(msg);
       } else {
         node.send({ payload: val });
       }
     };
 
-    let callRtdbGet = (path) => {
+    let callRtdbGet = (path,msg) => {
       console.log("* rtdb-get callRtdbGet for path " + path);
       if (path) {
         this.admin
@@ -25,7 +25,7 @@ module.exports = function (RED) {
           .once("value")
           .then(
             (res) => {
-              cb(res);
+              cb(res,msg);
             },
             (fail) => {
               console.log("rtdb-get failure ");
@@ -56,7 +56,7 @@ module.exports = function (RED) {
         if (msg && msg.payload) {
           path = path || msg.payload.path;
         }
-        callRtdbGet(path);
+        callRtdbGet(path,msg);
       }.bind(this)
     );
   }
