@@ -14,11 +14,10 @@ module.exports = function (RED) {
       } else {
         node.send({ payload: val });
       }
-      msgin = "";
     };
 
-    let setUpListener = (path) => {
-      console.log("* rtdb-get setUpListener for path " + path);
+    let callRtdbGet = (path) => {
+      console.log("* rtdb-get callRtdbGet for path " + path);
       if (path) {
         this.admin
           .database()
@@ -46,18 +45,18 @@ module.exports = function (RED) {
 
     this.path = config.path;
     if (this.path) {
-      setUpListener(this.path);
+      callRtdbGet(this.path);
     }
 
     node.on(
       "input",
       function (msg) {
+        msgin = msg;
         let path = this.path;
         if (msg && msg.payload) {
           path = path || msg.payload.path;
-          msgin = msg;
-          setUpListener(path);
         }
+        callRtdbGet(path);
       }.bind(this)
     );
   }
