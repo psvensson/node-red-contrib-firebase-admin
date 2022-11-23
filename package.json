@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yizenlim/node-red-contrib-firebase-admin.git"
+    "url": "git+https://github.com/psvensson/node-red-contrib-firebase-admin.git"
   },
   "author": "",
   "license": "MIT",
@@ -20,9 +20,9 @@
     "auth"
   ],
   "bugs": {
-    "url": "https://github.com/yizenlim/node-red-contrib-firebase-admin/issues"
+    "url": "https://github.com/psvensson/node-red-contrib-firebase-admin/issues"
   },
-  "homepage": "https://github.com/yizenlim/node-red-contrib-firebase-admin#readme",
+  "homepage": "https://github.com/psvensson/node-red-contrib-firebase-admin#readme",
   "node-red": {
     "nodes": {
       "rtdb-set": "rtdb/rtdb-set.js",
