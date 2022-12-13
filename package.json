@@ -46,7 +46,7 @@
   },
   "dependencies": {
     "@google-cloud/storage": "^5.7.0",
-    "@node-red/runtime": "^1.2.8",
+    "@node-red/runtime": "^3.0.2",
     "firebase-admin": "^9.4.2"
   }
 }
